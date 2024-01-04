@@ -20,7 +20,10 @@ public class JwtService {
         return extractClaim(token,Claims::getSubject);
     }
     private Claims extractAllClaims(String token){
-        return Jwts.parserBuilder().setSigningKey(getSignIngKey()).build().parseClaimsJwt(token).getBody();
+        return Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
     }
   public  <T> T extractClaim(String token, Function<Claims,T> claimResolver){
         final Claims claims=extractAllClaims(token);
