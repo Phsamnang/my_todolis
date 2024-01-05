@@ -1,9 +1,8 @@
 package com.kosign.todolist.payload.category;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
 
-
-public record CategoryRequest (String name){
+public record CategoryRequest(
+        @NotBlank(message = "Please provide a name")
+        String name) {
 }

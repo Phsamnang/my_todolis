@@ -5,7 +5,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import jakarta.websocket.Decoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +46,7 @@ public String generateToken(Map<String, Objects> extractClaim, UserDetails userD
         return Jwts.builder()
                 .setClaims(extractClaim)
                 .setSubject(userDetails.getUsername()).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
+                .setExpiration(new Date(System.currentTimeMillis()+10000*60*24))
                 .signWith(getSignIngKey(), SignatureAlgorithm.HS256)
                 .compact();
 }

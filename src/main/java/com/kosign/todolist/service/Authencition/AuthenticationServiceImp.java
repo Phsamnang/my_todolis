@@ -42,4 +42,9 @@ public class AuthenticationServiceImp implements AuthenticationService {
         return AuthenticationResponse.builder().token(jwtToken).build();
 
     }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return repository.findByEmail(email).get();
+    }
 }
